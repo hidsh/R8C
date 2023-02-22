@@ -67,20 +67,21 @@ CP	=	g++
 CC	=	gcc
 LK	=	g++
 RC	=
-# PINCS += '-isystem /mingw64/include'
-else
-CP	=	clang++
-CC	=	clang
-LK	=	clang++
-RC	=
-endif
-
-POPT	=	-O2 -std=gnu++14
-COPT	=	-O2
-LOPT	=
-
 PFLAGS	=	-DHAVE_STDINT_H -D_WIN32
 CFLAGS	=
+# PINCS += '-isystem /mingw64/include'
+else
+CP	=	g++
+CC	=	gcc
+LK	=	g++
+RC	=
+PFLAGS	=	-DHAVE_STDINT_H
+CFLAGS	=
+endif
+
+POPT	=	-O2 -std=gnu++14 -I./boost_1_74_0
+COPT	=	-O2 -I./boost_1_74_0
+LOPT	=
 
 ifeq ($(BUILD),debug)
 	POPT += -g
@@ -161,7 +162,7 @@ tarball:
 	*.[hc]pp Makefile ../common/*/*.[hc]pp ../common/*/*.[hc]
 
 bin_zip:
-	$(LK) $(LFLAGS) $(LIBS) $(OBJECTS) $(ICON_OBJ) $(LIBN) -mwindows -o $(TARGET) 
+	$(LK) $(LFLAGS) $(LIBS) $(OBJECTS) $(ICON_OBJ) $(LIBN) -mwindows -o $(TARGET)
 	rm -f $(subst .exe,,$(TARGET))_$(shell date +%Y%m%d%H)_bin.zip
 	zip $(subst .exe,,$(TARGET))_$(shell date +%Y%m%d%H)_bin.zip *.exe *.dll
 
