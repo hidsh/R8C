@@ -375,7 +375,7 @@ namespace utils {
 			case 'F':
 				{
 					unsigned char t[4];
-					memcpy(p, t, 4);
+					memcpy(t, p, 4);
 					for(int i = 0; i < 4; ++i) {
 						*p++ = t[4 - 1 - i];
 					}
@@ -387,7 +387,7 @@ namespace utils {
 			case 'D':
 				{
 					unsigned char t[8];
-					memcpy(p, t, 8);
+					memcpy(t, p, 8);
 					for(int i = 0; i < 8; ++i) {
 						*p++ = t[8 - 1 - i];
 					}
